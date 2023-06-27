@@ -10,8 +10,12 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Layout from './component/Layout/Layout';
-import CustomNavbar from './component/Layout/CustomNavbar/CustomNavbar';
-import AuthProvider from './component/Layout/AuthProvider/AuthProvider';
+
+
+import RegistrationPage from './component/RegistrationPage/RegistrationPage';
+import Login from './component/Login/Login'
+import AuthProvider from './component/AuthProvider/AuthProvider';
+
 
 
 
@@ -19,6 +23,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    children:[
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/registration',
+        element:<RegistrationPage></RegistrationPage>
+      }
+    ]
 
   },
 ]);
