@@ -35,6 +35,16 @@ const RegistrationPage = () => {
             setError('');
             // registration function from authprovider======
             handleRegistrationWithEmail(email,password);
+           
+            fetch('http://localhost:5000/users',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({email:email, status:'student',name:name,img:photoUrl})
+            })
+            .then(res=>res.json())
+            .then(data=>console.log(data))
             
         }
 

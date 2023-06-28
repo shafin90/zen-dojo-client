@@ -19,7 +19,7 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to='/' >Home</Nav.Link>
             <Nav.Link href="#instructors">Instructors</Nav.Link>
             <Nav.Link href="#classes">Classes</Nav.Link>
-            <Nav.Link href="#dashboard">Dashboard</Nav.Link>
+            <Nav.Link  as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown

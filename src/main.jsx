@@ -15,6 +15,10 @@ import Layout from './component/Layout/Layout';
 import RegistrationPage from './component/RegistrationPage/RegistrationPage';
 import Login from './component/Login/Login'
 import AuthProvider from './component/AuthProvider/AuthProvider';
+import Home from './component/Home/Home';
+import Dashboard from './component/Dashboard/Dashboard';
+import ManageClasses from './component/ManageClasses/ManageClasses';
+import ManageUsers from './component/ManageUsers/ManageUsers';
 
 
 
@@ -23,18 +27,38 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
-    children:[
+    children: [
       {
-        path:'/login',
-        element:<Login></Login>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path:'/registration',
-        element:<RegistrationPage></RegistrationPage>
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/registration',
+        element: <RegistrationPage></RegistrationPage>
       }
     ]
 
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: '/dashboard/manage_classes',
+        element: <ManageClasses></ManageClasses>
+      },
+
+      {
+        path: '/dashboard/manage_users',
+        element: <ManageUsers></ManageUsers>
+      }
+    ]
+  }
+
 ]);
 
 

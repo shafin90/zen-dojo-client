@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../../firebase.config";
 
 
@@ -79,6 +79,17 @@ const AuthProvider = ({ children }) => {
 
                 const user = result.user;
                 setUser(user)
+
+
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: user.email, status: 'student', name: user.displayName, img: user.photoURL })
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
             }).catch((error) => {
 
             });
@@ -100,6 +111,31 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+    // observer========================================
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
 
     console.log(user)
