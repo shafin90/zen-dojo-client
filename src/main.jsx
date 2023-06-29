@@ -19,6 +19,8 @@ import Home from './component/Home/Home';
 import Dashboard from './component/Dashboard/Dashboard';
 import ManageClasses from './component/ManageClasses/ManageClasses';
 import ManageUsers from './component/ManageUsers/ManageUsers';
+import AddClass from './component/AddClass/AddClass';
+import MyClass from './component/MyClass/MyClass';
 
 
 
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/manage_users',
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path:'/dashboard/addClass',
+        element:<AddClass></AddClass>
+      },
+      {
+        path:'/dashboard/myClass',
+        element:<MyClass></MyClass>
       }
     ]
   }
