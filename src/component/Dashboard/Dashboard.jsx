@@ -64,9 +64,17 @@ const Dashboard = () => {
 
 
                     <ul className="ps-5">
+                        
+                        
                         <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status== 'admin'?'/dashboard/manage_users':'/dashboard/addClass'}>{loggedInUser.status=='admin'?'Manage users':`${loggedInUser.status=='instructor'?'Add Class':'Selected Class'}`}</Link></li>
+                        
+                        
                         <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status== 'admin'?'/dashboard/manage_users':'/dashboard/myClass'}>{loggedInUser.status=='admin'?'Manage Classes':`${loggedInUser.status=='instructor'?'My Classes':'enrolled Class'}`}</Link></li>
+                        
+                        
                         <li className="mb-2"><Link className="text-white text-decoration-none" to="/">Home</Link></li>
+                    
+                    
                     </ul>
                 </Col>
 
