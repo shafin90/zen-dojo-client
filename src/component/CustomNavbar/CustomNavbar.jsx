@@ -17,7 +17,7 @@ const CustomNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto d-flex justify-content-center align-items-center w-100">
             <Nav.Link as={Link} to='/' >Home</Nav.Link>
-            <Nav.Link href="#instructors">Instructors</Nav.Link>
+            <Nav.Link as={Link} to='/instructor'>Instructors</Nav.Link>
             <Nav.Link href="#classes">Classes</Nav.Link>
             <Nav.Link  as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>

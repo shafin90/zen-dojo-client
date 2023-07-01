@@ -21,6 +21,7 @@ import ManageClasses from './component/ManageClasses/ManageClasses';
 import ManageUsers from './component/ManageUsers/ManageUsers';
 import AddClass from './component/AddClass/AddClass';
 import MyClass from './component/MyClass/MyClass';
+import Instructor from './component/Instructor/Instructor';
 
 
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/registration',
         element: <RegistrationPage></RegistrationPage>
+      },
+      {
+        path:'/instructor',
+        element:<Instructor></Instructor>
       }
     ]
 
