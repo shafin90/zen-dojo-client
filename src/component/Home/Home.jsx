@@ -21,7 +21,7 @@ const Home = () => {
             <HowToJoin></HowToJoin>
             <OurAllStudent></OurAllStudent>
             <FAQ></FAQ>
-            <Footer></Footer>
+            
         </Container>
     );
 };

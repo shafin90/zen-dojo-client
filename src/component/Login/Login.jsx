@@ -42,15 +42,15 @@ const Login = () => {
         <Container>
             <Row className="justify-content-center">
                 <Col xs={12} sm={8} md={6} lg={4} className='d-flex flex-column justify-content-center align-items-center'>
-                    <h1 className="text-center mt-5 mb-4">Login</h1>
+                    <h1 className="text-center mt-5 fw-bold mb-4">Login</h1>
                     <Form onSubmit={handleSignIn} className='w-100'>
                         <Form.Group controlId="email">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label className='fw-bold'>Email</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" required />
                         </Form.Group>
 
-                        <Form.Group controlId="password">
-                            <Form.Label>Password</Form.Label>
+                        <Form.Group className='mt-3' controlId="password">
+                            <Form.Label className='fw-bold '>Password</Form.Label>
                             <div className="password-toggle">
                                 <Form.Control
                                     type={passwordVisible ? 'text' : 'password'}
@@ -77,13 +77,13 @@ const Login = () => {
                             </div>
                         </Form.Group>
 
-                        <Button variant="primary"  type="submit" block>
+                        <Button  className='no-border-radius bg-blue px-5' type="submit" block>
                             Login
                         </Button>
                     </Form>
 
                     <p className="text-center mt-3">
-                        Don't have an account? <Link className='text-decoration-none' to='/registration'>Register here</Link>
+                        Don't have an account? <Link className='text-decoration-none text-blue' to='/registration'>Register here</Link>
                     </p>
 
                     <p className='text-center'>Or</p>

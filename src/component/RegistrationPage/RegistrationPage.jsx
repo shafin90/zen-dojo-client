@@ -59,7 +59,7 @@ const RegistrationPage = () => {
         <Container>
             <Row className="justify-content-center">
                 <Col xs={12} sm={8} md={6} lg={4}>
-                    <h1 className="text-center mt-5 mb-4">Registration</h1>
+                    <h1 className="text-center mt-5 mb-4 fw-bold">Registration</h1>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleRegistration}>
                         <Form.Group controlId="name">
@@ -114,12 +114,12 @@ const RegistrationPage = () => {
 
                         <p className='text-danger text-sm'>{error}</p>
 
-                        <Button variant="primary" type="submit" block>
+                        <Button  type="submit" className='no-border-radius bg-blue px-5' block>
                             Register
                         </Button>
 
 
-                        <p className='mt-2'>Already have an account? <Link className='text-decoration-none' to='/login'>Login</Link></p>
+                        <p className='mt-2'>Already have an account? <Link className='text-decoration-none text-blue' to='/login'>Login</Link></p>
                     </Form>
                 </Col>
             </Row>
