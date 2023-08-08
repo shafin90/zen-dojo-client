@@ -57,7 +57,7 @@ const Dashboard = () => {
     return (
         <Container fluid className="h-100">
             <Row className="h-100">
-                <Col className="bg-dark h-100" sm={12} md={2}>
+                <Col className="bg-dark h-md-100 " sm={12} md={2}>
                     <h1 className="text-white text-center mt-4 mb-5">
                         {loggedInUser.status == 'instructor' ? 'Instructor' : `${loggedInUser.status == 'admin' ? 'Admin' : 'student'}`}
                     </h1>
