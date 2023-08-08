@@ -1,0 +1,18 @@
+.text-red{
+    color: #B60000;
+}
+.bg-red{
+    background-color: #B60000;
+}
+
+.text-blue{
+    color: #014094;
+}
+
+.bg-blue{
+    background-color: #014094;
+}
+
+.no-border-radius{
+    border-radius: 0px;
+}

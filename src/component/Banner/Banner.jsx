@@ -7,13 +7,16 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
+// blue- #014094
+// red= #B60000
+
 const Banner = () => {
     useEffect(() => {
         AOS.init();
     }, []);
     return (
         <Container className='my-5 py-5'>
-            <h1 className='h4 mb-4 fw-bold display-6 mb-5'>
+            <h1 className='h4 mb-4 text-dark fw-bold display-6 mb-5'>
 
 
                 <TypeAnimation
