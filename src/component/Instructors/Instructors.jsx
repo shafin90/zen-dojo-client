@@ -7,16 +7,16 @@ import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 
 const Instructors = () => {
-    const {instructor} = useContext(authContext);
+    const { instructor } = useContext(authContext);
 
 
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         AOS.init();
-    },[])
-   
+    }, [])
+
 
 
 
@@ -49,9 +49,10 @@ const Instructors = () => {
                     {
                         instructor.map(item => {
                             return (
-                                
-                                    <Card  className="me-5 instructor-card" >
-                                        <Card.Img className="img" variant="top"  src={item.img} />
+
+                                <div className="me-5">
+                                    <Card className=" instructor-card" >
+                                        <Card.Img className="img" variant="top" src={item.img} />
                                         <Card.Body >
                                             <Card.Title>{item.name}</Card.Title>
                                             <Card.Text>
@@ -60,7 +61,9 @@ const Instructors = () => {
 
                                         </Card.Body>
                                     </Card>
-                                
+                                </div>
+
+
                             )
                         })
                     }

@@ -5,6 +5,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 import './CustomNavbar.css'
 
+
+// text-red,text-blue, bg-red,bg-blue,no-border-radius class are created to match color and theme of website. Those class are created in CustomNavbar.css file
+
+
+
+
 const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
   const { user, handleLogout } = useContext(authContext);
@@ -26,15 +32,14 @@ const CustomNavbar = () => {
             <Nav.Link className={user?'fw-bold':'d-none'} as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>
           <Nav>
-            <NavDropdown
-              className={user ? 'd-block' : 'd-none'}
-              title={<img src="user-profile-picture.jpg" alt="User" className="user-profile-picture" />}
-              id="basic-nav-dropdown"
-              align="end"
+            <div
+              className={user ? 'd-block d-flex justy-content-between align-items-center' : 'd-none'}
+            
             >
+              <img src="user-profile-picture.jpg"  alt="User" className="user-profile-picture me-3" />
 
-              <NavDropdown.Item onClick={handleLogout} href="#logout">Logout</NavDropdown.Item>
-            </NavDropdown>
+              <Button onClick={handleLogout} className='px-4 py-2 btn no-border-radius bg-red text-white' href="#logout">Logout</Button>
+            </div>
             <Button as={Link} to='/login' className={user ? 'd-none ' : 'd-block px-5 py-2 btn no-border-radius bg-blue'} >Login</Button>
           </Nav>
         </Navbar.Collapse>

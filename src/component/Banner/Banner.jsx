@@ -5,18 +5,26 @@ import { TypeAnimation } from 'react-type-animation';
 import { Col, Container, Row } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // blue- #014094
 // red= #B60000
 
 const Banner = () => {
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    console.log(screenWidth)
+    // Initiate AOS
     useEffect(() => {
         AOS.init();
     }, []);
+
+
+
     return (
         <Container className='my-5 py-5'>
-            <h1 className='h4 mb-4 text-dark fw-bold display-6 mb-5'>
+
+            {screenWidth > 575 ? <h1 className='h4 mb-4 text-dark fw-bold banner-heading display-6 mb-5'>
 
 
                 <TypeAnimation
@@ -35,7 +43,32 @@ const Banner = () => {
                     style={{ fontSize: '2em' }}
                     repeat={Infinity}
                 />
-            </h1>
+            </h1> : <h1 className='h4 mb-4 text-dark fw-bold banner-heading display-6 mb-5'>
+
+
+                <TypeAnimation
+                    sequence={[
+                        // Same substring at the start will only be typed once, initially
+                        'Zen Dojo',
+                        1000,
+                        'Unleash Your',
+                        1000,
+                        'Inner Strength',
+                        1000,
+                        'Through',
+                        1000,
+                        'Martial Arts and',
+                        1000,
+                        'Self-Defense',
+                        1000,
+                        'Training',
+                        1000
+                    ]}
+                    speed={50}
+                    style={{ fontSize: '2em' }}
+                    repeat={Infinity}
+                />
+            </h1>}
             <Row>
                 <Col data-aos="fade-right" data-aos-duration="2000" sm={12} md={5}>
                     <Flicking
@@ -68,13 +101,15 @@ const Banner = () => {
 
 
 
-                    <article data-aos="fade-left" data-aos-duration="2000" className='fw-lg text-size' >
+                    <article data-aos="fade-left" data-aos-duration="2000" className='fw-lg fs-5 text-secondary mb-5' >
 
-                        Welcome to Zen Dojo, your ultimate destination for martial arts training and self-defense. Immerse yourself in a sanctuary of discipline and inner strength as we offer a wide array of martial arts disciplines to empower you with self-defense skills. Whether you're a beginner or an experienced practitioner, our dedicated instructors will guide you on a transformative journey of physical mastery and mental resilience. Discover the art of self-defense, cultivate inner peace, and unlock your true potential at Zen Dojo, where martial arts and personal growth harmoniously coexist.
+                        Welcome to <span className='fw-bold'>Zen Dojo</span>, your ultimate destination for martial arts training and self-defense. Immerse yourself in a sanctuary of discipline and inner strength as we offer a wide array of martial arts disciplines to empower you with self-defense skills. Whether you're a beginner or an experienced practitioner, our dedicated instructors will guide you on a transformative journey of physical mastery and mental resilience. Discover the art of self-defense, cultivate inner peace, and unlock your true potential at Zen Dojo, where martial arts and personal growth harmoniously coexist.
                     </article>
 
                 </Col>
             </Row>
+
+           
         </Container>
     );
 };

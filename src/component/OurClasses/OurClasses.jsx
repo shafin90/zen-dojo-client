@@ -9,35 +9,37 @@ const OurClasses = () => {
         AOS.init();
     }, []);
     return (
-        <Container>
-            <h1 data-aos="zoom-in" data-aos-duration="2000" className="h1 fw-bold display-4 my-5 pt-5 text-center">Our Class Catagory</h1>
+        <Container >
+            <h1 data-aos="zoom-in" data-aos-duration="2000" className="h1 fw-bold display-4 my-5 pt-5 text-center">Our <span className="text-blue">Class Catagory</span></h1>
 
 
 
             <Row>
+
+
                 <Col className="d-flex justify-content-center align-items-center">
                     <Card data-aos='fade-right' data-aos-duration='2000' className="mb-3" style={{ width: '18rem' }}>
                         <Card.Img variant="top" className="img-fluid h-100" src="http://www.vitalitymedspa.com/wp-content/uploads/boxing-practice-scaled.jpg" />
                         <Card.Body>
                             <Card.Title className="fw-bold">Boxing</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Boxing, a combat sport, involves skillful punches and strategic moves, showcasing strength, agility, and determination within the ring.
                             </Card.Text>
-                     
+
                         </Card.Body>
                     </Card>
                 </Col>
+
+
                 <Col className="d-flex justify-content-center align-items-center">
                     <Card data-aos='zoom-in' data-aos-duration='2000' className="mb-3" style={{ width: '18rem' }}>
                         <Card.Img variant="top" className="img-fluid h-100" src="https://www.androiddev.tools/karate/images/training.jpg" />
                         <Card.Body>
                             <Card.Title className="fw-bold">Karate</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Karate, a disciplined martial art, emphasizes technique, focus, and self-defense, promoting physical fitness and mental strength .
                             </Card.Text>
-                  
+
                         </Card.Body>
                     </Card>
 
@@ -48,26 +50,24 @@ const OurClasses = () => {
                         <Card.Body>
                             <Card.Title className="fw-bold">Wrestling</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Wrestling, a dynamic sport, features intense grappling and strategy, demanding strength and agility, while testing  adaptability.
                             </Card.Text>
-                        
+
                         </Card.Body>
                     </Card>
 
                 </Col>
             </Row>
-            <Row>
+            <Row className=" mt-5">
                 <Col className="d-flex justify-content-center align-items-center">
                     <Card data-aos='fade-right' data-aos-duration='2000' className="mb-3" style={{ width: '18rem' }}>
                         <Card.Img variant="top" className="img-fluid h-100" src="https://www.wingchun.edu.au/content/upload/images/templates/academy/xl/wing-chun-sparring-l.jpg" />
                         <Card.Body>
                             <Card.Title className="fw-bold">Wing chan</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Agile martial art emphasizing close-range combat, swift strikes, and economy of motion for self-defense.
                             </Card.Text>
-         
+
                         </Card.Body>
                     </Card>
                 </Col>
@@ -77,10 +77,9 @@ const OurClasses = () => {
                         <Card.Body>
                             <Card.Title className="fw-bold">Judo</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Judo, a Japanese martial art, emphasizes throws, pins, and joint locks, using an opponent's energy for controlled self-defense and sport.
                             </Card.Text>
-                            
+
                         </Card.Body>
                     </Card>
                 </Col>
@@ -90,10 +89,9 @@ const OurClasses = () => {
                         <Card.Body>
                             <Card.Title className="fw-bold">Usual Self Defense</Card.Title>
                             <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
+                                Learning self-defense techniques is vital for personal safety, empowering individuals to respond effectively to potential threats and dangers.
                             </Card.Text>
-                            
+
                         </Card.Body>
                     </Card>
                 </Col>
