@@ -32,7 +32,7 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/gettingUserInfo')
+        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [])
@@ -59,22 +59,35 @@ const Dashboard = () => {
             <Row className="h-100">
                 <Col className="bg-dark h-100" sm={12} md={2}>
                     <h1 className="text-white text-center mt-4 mb-5">
-                        {loggedInUser.status == 'instructor' ? 'Instructor' : `${loggedInUser.status== 'admin'?'Admin':'student'}`}
+                        {loggedInUser.status == 'instructor' ? 'Instructor' : `${loggedInUser.status == 'admin' ? 'Admin' : 'student'}`}
                     </h1>
 
 
+
                     <ul className="ps-5">
-                        
-                        
-                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status== 'admin'?'/dashboard/manage_users':'/dashboard/addClass'}>{loggedInUser.status=='admin'?'Manage users':`${loggedInUser.status=='instructor'?'Add Class':'Selected Class'}`}</Link></li>
-                        
-                        
-                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status== 'admin'?'/dashboard/manage_classes':'/dashboard/myClass'}>{loggedInUser.status=='admin'?'Manage Classes':`${loggedInUser.status=='instructor'?'My Classes':'enrolled Class'}`}</Link></li>
-                        
-                        
+
+
+                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_users' : `${loggedInUser.status == 'instructor' ? '/dashboard/addClass' : '/dashboard/selected_class'}`}>{loggedInUser.status == 'admin' ? 'Manage users' : `${loggedInUser.status == 'instructor' ? 'Add Class' : 'Selected Class'}`}</Link></li>
+
+
+                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_classes' : '/dashboard/myClass'}>{loggedInUser.status == 'admin' ? 'Manage Classes' : `${loggedInUser.status == 'instructor' ? 'My Classes' : 'enrolled Class'}`}</Link></li>
+
+
                         <li className="mb-2"><Link className="text-white text-decoration-none" to="/">Home</Link></li>
-                    
-                    
+
+
+                        <li className="mb-2"><Link className={loggedInUser.status=="instructor"?"text-white text-decoration-none":"d-none"} to="/dashboard/addbioofinstructor ">Add Bio</Link></li>
+
+
+
+
+
+
+
+
+
+
+
                     </ul>
                 </Col>
 

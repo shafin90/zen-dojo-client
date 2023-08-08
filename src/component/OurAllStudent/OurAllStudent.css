@@ -1,0 +1,33 @@
+.outer{
+    
+    overflow: hidden;
+}
+
+
+.slider{
+    position: relative;
+    width: 3000px;
+    
+    animation-name: move-left;
+    animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+.slider img{
+    max-width: 350px;
+    max-height: 650px;
+}
+
+@keyframes move-left {
+    0%{
+        left:0px;
+    }
+    50%{
+        left:-2500px
+    }
+    100%{
+        left: 0px;
+    }
+    
+}

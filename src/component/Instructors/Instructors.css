@@ -1,0 +1,24 @@
+.outerr{
+    
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+
+.sliderr{
+    position: relative;
+    width: auto;
+
+}
+
+
+
+.instructor-card{
+    width: 250px;
+
+}
+
+.instructor-card .img{
+    max-width: 250px;
+    max-height: 250px;
+}

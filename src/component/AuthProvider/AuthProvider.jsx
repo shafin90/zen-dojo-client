@@ -26,6 +26,29 @@ const AuthProvider = ({ children }) => {
 
 
 
+    //STATE===============================================
+    const [allUser, setAllUser] = useState([])//This state is to store all user info
+    const [instructor, setInstructor] = useState([])// This state is to store instructors 
+
+    //LOADING DATA OF ALL USERS.
+    useEffect(() => {
+        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+            .then(response => response.json())
+            .then(data => setInstructor(data.filter(e => e.status == "instructor")))
+    }, [])
+
+
+
+    
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,7 +104,7 @@ const AuthProvider = ({ children }) => {
                 setUser(user)
 
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://zen-doj-server-shafin90.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -146,7 +169,8 @@ const AuthProvider = ({ children }) => {
         handleGoogleSignIn,
         handleRegistrationWithEmail,
         handleSignInWithEmail,
-        handleLogout
+        handleLogout,
+        instructor
     }
 
     return (

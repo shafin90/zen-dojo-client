@@ -22,6 +22,10 @@ import ManageUsers from './component/ManageUsers/ManageUsers';
 import AddClass from './component/AddClass/AddClass';
 import MyClass from './component/MyClass/MyClass';
 import Instructor from './component/Instructor/Instructor';
+import ClassList from './component/ClassList/ClassList';
+import SelectedClass from './component/SelectedClass/SelectedClass';
+import NotFoundPage from './component/NotFoundPage/NotFoundPage';
+// import AddBioOfInstructor from './component/AddBioOfInstructor/AddBioOfInstructor';
 
 
 
@@ -46,6 +50,10 @@ const router = createBrowserRouter([
       {
         path:'/instructor',
         element:<Instructor></Instructor>
+      },
+      {
+        path:'/class_list',
+        element:<ClassList></ClassList>
       }
     ]
 
@@ -70,8 +78,16 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/myClass',
         element:<MyClass></MyClass>
+      },
+      {
+        path:'/dashboard/selected_class',
+        element:<SelectedClass></SelectedClass>
       }
     ]
+  },
+  {
+    path:'*',
+    element:<NotFoundPage></NotFoundPage>
   }
 
 ]);

@@ -39,7 +39,7 @@ const AddClass = () => {
 
 
         // lets put the info through API
-        fetch('http://localhost:5000/pending_classes',{
+        fetch('https://zen-doj-server-shafin90.vercel.app/pending_classes',{
              method:'POST',
              headers:{
                 'Content-Type':'application/json'
