@@ -33,7 +33,7 @@ const OurClasses = () => {
 
                 <Col className="d-flex justify-content-center align-items-center">
                     <Card data-aos='zoom-in' data-aos-duration='2000' className="mb-3" style={{ width: '18rem' }}>
-                        <Card.Img variant="top" className="img-fluid h-100" src="https://www.androiddev.tools/karate/images/training.jpg" />
+                        <Card.Img variant="top" className="img-fluid h-100" src="https://static.wixstatic.com/media/82efacf67509447eb89b898a3ff6e3cd.jpg/v1/fill/w_900,h_600,al_c,q_85,usm_0.66_1.00_0.01/Karate%20Practice.jpg" />
                         <Card.Body>
                             <Card.Title className="fw-bold">Karate</Card.Title>
                             <Card.Text>

@@ -5,15 +5,20 @@ import './OurAllStudent.css'
 
 
 const OurAllStudent = () => {
+    // Detecting ScreenWidth. We have to use TypeAnimation based on screenwidth.
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    
 
     return (
         <Container className="py-5">
-            <h1 className="fw-bold mb-5   ">
+            {
+                screenWidth>575?
+                <h1 className="fw-bold mb-5   ">
 
                 <TypeAnimation
                     sequence={[
                         // Same substring at the start will only be typed once, initially
-                        'Current the number of ',
+                        'The Current number of ',
                         1000,
                         'Our well trained',
                         1000,
@@ -26,7 +31,35 @@ const OurAllStudent = () => {
                     style={{ fontSize: '2em' }}
                     repeat={Infinity}
                 />
+            </h1> 
+            :
+            <h1 className="fw-bold mb-5   ">
+
+                <TypeAnimation
+                    sequence={[
+                        // Same substring at the start will only be typed once, initially
+                        'The Current',
+                        1000,
+                        'number of ',
+                        1000,
+                        'Our well',
+                        1000,
+                        'trained and',
+                        1000,
+                        'skilled students',
+                        1000,
+                        'is 943',
+                        1000,
+                    ]}
+                    speed={50}
+                    style={{ fontSize: '2em' }}
+                    repeat={Infinity}
+                />
             </h1>
+            }
+            
+            
+            
             <div className="outer">
                 <div className="slider d-flex justify-content-between align-items-center">
                    

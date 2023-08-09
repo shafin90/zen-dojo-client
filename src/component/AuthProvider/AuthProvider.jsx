@@ -19,18 +19,10 @@ const AuthProvider = ({ children }) => {
 
     // state declaration=======================
     const [user, setUser] = useState(null);
-
-
-
-
-
-
-
-    //STATE===============================================
     const [allUser, setAllUser] = useState([])//This state is to store all user info
     const [instructor, setInstructor] = useState([])// This state is to store instructors 
 
-    //LOADING DATA OF ALL USERS.
+    //LOADING INSTRUCTORS DARA FROM  ALL USERS.
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(response => response.json())
@@ -39,7 +31,16 @@ const AuthProvider = ({ children }) => {
 
 
 
-    
+
+    //LOADING ALL DATA==========
+    useEffect(() => {
+        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+            .then(response => response.json())
+            .then(data => setAllUser(data))
+   
+ }, [])
+
+
 
 
 

@@ -15,6 +15,8 @@ const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
   const { user, handleLogout } = useContext(authContext);
 
+  console.log(user)
+
 
   //Getting the current pathname. It is needed to highlight the rout where user currently in.
   const { pathname } = useLocation();
