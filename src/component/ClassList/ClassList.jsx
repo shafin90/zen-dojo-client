@@ -1,11 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
+import { authContext } from "../AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 
 const ClassList = () => {
 
+    // Getting data from AuthProvider component through context API.
+    const {user} = useContext(authContext);
+    
+    // Declaring state for this component.
     const [classList, setClassList] = useState([]);
 
+
+    // Declaring usenavigation hook.
+    const navigate = useNavigate();
+
+
+
+    // Loading al data of class.
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/getting_approved_classes')
             .then(res => res.json())
@@ -14,6 +27,7 @@ const ClassList = () => {
 
 
 
+    // Spinner will be shown untill the data is loaded.
     if(classList.length==0){
         return (
             <Spinner animation="border" role="status">
@@ -24,8 +38,14 @@ const ClassList = () => {
 
 
 
+    // When user click on select button, then this function will be excecuted.
     const handleSelection=(item)=>{
-        console.log('its working')
+        // If user wants to select a class without being logged in account, then user will be redirected to login page.
+        if(!user){
+            navigate('/login')
+        }
+    
+        // Sending the class data to the server to store it as selected class for the user.
         fetch('https://zen-doj-server-shafin90.vercel.app/selected_class',{
             method:'POST',
             headers:{
@@ -58,7 +78,7 @@ const ClassList = () => {
                                     <td><img className="table-image" src={e.image} alt="" /></td>
                                     <td>{e.className}</td>
                                     <td>loading</td>
-                                    <td><button onClick={()=>handleSelection(e)} className="btn btn-primary btn-sm">select</button></td>
+                                    <td><button onClick={()=>handleSelection(e)} className="btn no-border-radius bg-blue px-3 btn-sm text-white">select</button></td>
                                 </tr>
                             )
 

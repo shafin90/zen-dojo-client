@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../../firebase.config";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const authContext = createContext();
@@ -8,21 +10,22 @@ export const authContext = createContext();
 
 
 const AuthProvider = ({ children }) => {
-    // auth for authentication==========
+    //auth for authentication==========
     const auth = getAuth(app);
 
-    // provider for google sign in
+    //provider for google sign in
     const provider = new GoogleAuthProvider();
 
 
 
 
-    // state declaration=======================
+    //State declaration=======================
     const [user, setUser] = useState(null);
     const [allUser, setAllUser] = useState([])//This state is to store all user info
     const [instructor, setInstructor] = useState([])// This state is to store instructors 
+    const [img, setImg] = useState('');//users img will be stored here.
 
-    //LOADING INSTRUCTORS DARA FROM  ALL USERS.
+    //Loading data from database. Filter the data to get only instructors data and set that to instructor state.
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(response => response.json())
@@ -32,13 +35,12 @@ const AuthProvider = ({ children }) => {
 
 
 
-    //LOADING ALL DATA==========
+    //Loading all users data.
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(response => response.json())
             .then(data => setAllUser(data))
-   
- }, [])
+    }, [])
 
 
 
@@ -65,13 +67,44 @@ const AuthProvider = ({ children }) => {
 
 
 
-    // create account using eamil and password==================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // This function handle procedure of creating account using eamil and password
     const handleRegistrationWithEmail = (email, password) => {
         console.log(email, password);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                setUser(user)
+                setUser(user);
+
+                // showing succesfull message
+                toast.success('Successfully Registered Account!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch((error) => {
 
@@ -80,31 +113,63 @@ const AuthProvider = ({ children }) => {
 
 
 
-    // sign in with email password==========================================================================================================================================
+    //This function handle the procedure of sign in with email password.
     const handleSignInWithEmail = (email, password) => {
         console.log(email, password)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 setUser(user);
-                // ...
+                // showing succesfull message
+                toast.success('Successfully Logged in!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             })
             .catch((error) => {
+                toast.error('Oops!!! Something is wrong. Please try again', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
 
             });
     }
 
 
-    // sign in with google==============================================================================================================================================
+    //This function handle the procedure of getting sign in by google.
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
 
                 const user = result.user;
-                setUser(user)
+                setUser(user);
+
+                // Showing succesfull message
+                toast.success('Successfully Logged in by google!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
 
 
+                // Sending users information to the database
                 fetch('https://zen-doj-server-shafin90.vercel.app/users', {
                     method: 'POST',
                     headers: {
@@ -124,11 +189,21 @@ const AuthProvider = ({ children }) => {
 
 
 
-    // logout==============================================================================================
+    //This function handle the procedure to logout user.
     const handleLogout = () => {
         signOut(auth).then(() => {
-            // Sign-out successful.
-            setUser(null)
+            setUser(null);
+            // showing succesfull message
+            toast.success('Logout successfully!!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }).catch((error) => {
             // An error happened.
         });
@@ -162,11 +237,12 @@ const AuthProvider = ({ children }) => {
     }, []);
 
 
-    console.log(user)
 
-    // all value that i am passing to another components=======================================
+
+    // all value that are being passed other components.
     const passingValue = {
         user,
+        allUser,
         handleGoogleSignIn,
         handleRegistrationWithEmail,
         handleSignInWithEmail,
@@ -177,6 +253,21 @@ const AuthProvider = ({ children }) => {
     return (
         <authContext.Provider value={passingValue}>
             {children}
+
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+
 
         </authContext.Provider>
     );

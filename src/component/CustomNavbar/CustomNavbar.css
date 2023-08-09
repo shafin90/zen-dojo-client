@@ -4,6 +4,9 @@
 .bg-red{
     background-color: #B60000;
 }
+.bg-red:hover{
+    background-color: #bd0909;
+}
 
 .text-blue{
     color: #014094;
@@ -12,8 +15,17 @@
 .bg-blue{
     background-color: #014094;
 }
-
+.bg-blue:hover{
+    background-color: #005bd3;
+    transition: 0.3s;
+}
 .no-border-radius{
     border-radius: 0px;
 }
 
+.user-profile-picture{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: gray 2px solid;
+}

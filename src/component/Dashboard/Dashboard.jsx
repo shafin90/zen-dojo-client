@@ -7,6 +7,7 @@ import ManageClasses from "../ManageClasses/ManageClasses";
 import ManageUsers from "../ManageUsers/ManageUsers";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
+import './Dashboard.css';
 
 
 const Dashboard = () => {
@@ -93,7 +94,7 @@ const Dashboard = () => {
 
 
 
-                <Col sm={12} md={10}>
+                <Col className="dashboard-statistics" sm={12} md={10}>
 
 
 

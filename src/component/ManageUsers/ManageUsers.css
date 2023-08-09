@@ -1,4 +1,8 @@
 .table-img{
-    border-radius: 50%;
+    
     width: 50px;
+}
+
+.use_info_table{
+    background: transparent;
 }

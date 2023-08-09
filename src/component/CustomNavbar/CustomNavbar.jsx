@@ -13,9 +13,14 @@ import './CustomNavbar.css'
 
 const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
-  const { user, handleLogout } = useContext(authContext);
+  const { user, handleLogout, allUser } = useContext(authContext);
 
   console.log(user)
+
+  //I will check the email of current user with all the data that is being loaded. In this way i can find the current users photo from database.
+  const currentUser = allUser.find(item=>item.email==user?.email)
+  
+
 
 
   //Getting the current pathname. It is needed to highlight the rout where user currently in.
@@ -35,7 +40,7 @@ const CustomNavbar = () => {
           </Nav>
           <Nav>
             <div className={user ? 'd-block d-flex justy-content-between align-items-center' : 'd-none'}>
-              <img src="user-profile-picture.jpg" alt="User" className="user-profile-picture me-3" />
+              <img src={currentUser?.img} alt="User" className="user-profile-picture me-3" />
 
               <Button onClick={handleLogout} className='px-4 py-2 btn no-border-radius bg-red text-white' href="#logout">Logout</Button>
             </div>

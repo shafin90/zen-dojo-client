@@ -2,18 +2,25 @@ import 'ka-table/style.css';
 
 import { DataType, EditingMode, SortingMode } from 'ka-table/enums';
 import { useEffect, useState } from 'react';
-import { Spinner, Table } from 'react-bootstrap';
-import './ManageUsers.css'
+import { Spinner, Table, ToastContainer } from 'react-bootstrap';
+import './ManageUsers.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { toast } from 'react-toastify';
 
 
 const ManageUsers = () => {
+    // Initiate AOS
+    useEffect(() => {
+        AOS.init();
+    }, [])
 
 
-
+    // Declaring state for this  component.
     const [userFromDatabase, setUserFromDatabase] = useState([]);
 
 
-    // fetching data for the table from database=====================================
+    // Fetching data for the table from database=====================================
     const loadData = () => {
         fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(res => res.json())
@@ -42,6 +49,18 @@ const ManageUsers = () => {
             .then(res => res.json())
             .then(data => console.log(data))
 
+            // showing succesfull message
+            toast.success('This person is now an admin!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+
 
 
 
@@ -57,6 +76,7 @@ const ManageUsers = () => {
         console.log(123);
 
 
+
         fetch(`https://zen-doj-server-shafin90.vercel.app/updateUserInfo/${id}`, {
             method: "PUT",
             headers: {
@@ -68,6 +88,17 @@ const ManageUsers = () => {
             .then(res => res.json())
             .then(data => console.log(data))
 
+            // showing succesfull message
+            toast.success('This user is now an instructor!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
 
 
 
@@ -100,10 +131,13 @@ const ManageUsers = () => {
 
 
 
-    return (
-        <div>
 
-            <Table striped bordered hover>
+    return (
+        <div className='d-flex flex-column justify-content-center align-items-center h-100'>
+
+            <h1 className='text-center fw-bold display-3 mb-4'>All Users</h1>
+
+            <Table data-aos='fade-up' data-aos-duration="2000" className='use_info_table' striped bordered hover>
                 <thead>
                     <tr>
                         <th>Image</th>
@@ -122,8 +156,8 @@ const ManageUsers = () => {
                                 <td>{e.email}</td>
                                 <td>{e.status}</td>
                                 <td>
-                                    <button className='btn btn-primary' onClick={() => makeAdmin(e._id)}> make admin</button>
-                                    <button className='btn btn-warning ms-2' onClick={() => makeInstructor(e._id)}>make instructor</button>
+                                    <button className='btn no-border-radius bg-blue text-white px-2 btn-sm me-2' onClick={() => makeAdmin(e._id)}> make admin</button>
+                                    <button className='btn btn no-border-radius bg-red text-white px-2 btn-sm' onClick={() => makeInstructor(e._id)}>make instructor</button>
                                 </td>
                             </tr>
                         )
@@ -132,6 +166,21 @@ const ManageUsers = () => {
                 </tbody>
             </Table>
 
+
+
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
 
         </div>
     );

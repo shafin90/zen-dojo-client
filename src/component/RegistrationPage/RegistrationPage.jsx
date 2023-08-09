@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const RegistrationPage = () => {
     // Context API================================
@@ -50,65 +52,73 @@ const RegistrationPage = () => {
 
             e.target.reset();
         }
-
-
-
     };
+
+
+
+    useEffect(()=>{
+        AOS.init();
+    },[])
 
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col xs={12} sm={8} md={6} lg={4}>
+                <Col data-aos='zoom-in' data-aos-duration="2000" xs={12} sm={8} md={6} lg={4}>
                     <h1 className="text-center mt-5 mb-4 fw-bold">Registration</h1>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleRegistration}>
                         <Form.Group controlId="name">
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label className='fw-bold'>Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter your name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                className='no-border-radius mb-3'
                             />
                         </Form.Group>
 
                         <Form.Group controlId="email">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label className='fw-bold'>Email</Form.Label>
                             <Form.Control
                                 type="email"
                                 placeholder="Enter email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                className='no-border-radius mb-3'
                             />
                         </Form.Group>
 
                         <Form.Group controlId="password">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label className='fw-bold'>Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 placeholder="Enter password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                className='no-border-radius mb-3'
                             />
                         </Form.Group>
 
                         <Form.Group controlId="confirmPassword">
-                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Label className='fw-bold'>Confirm Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 placeholder="Confirm password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                className='no-border-radius mb-3'
                             />
                         </Form.Group>
 
                         <Form.Group controlId="photoUrl">
-                            <Form.Label>Photo URL</Form.Label>
+                            <Form.Label className='fw-bold'>Photo URL</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter photo URL"
                                 value={photoUrl}
                                 onChange={(e) => setPhotoUrl(e.target.value)}
+                                className='no-border-radius'
                             />
                         </Form.Group>
 
