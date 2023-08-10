@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Container, Table } from 'react-bootstrap';
 import StripeCheckout from 'react-stripe-checkout';
+import { authContext } from '../AuthProvider/AuthProvider';
 const STRIPE_PUBLISHABLE_KEY = 'pk_test_51NI6RJJlO98Mt1tpy1EJVt8YGEWmBjaYDBIbiKK3TicjVHJyQVwUEoDnTEJJfOaHDebDD7I0KNZ45HxJrisVNUDD006WpyiR5T';
 
 
 
 const SelectedClass = () => {
+    const {user} = useContext(authContext);
+
+
+    // State declaration of his component.
     const [selectedClass, setSelectedClass] = useState([]);
+
+
+
+
 
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/getting_selected_class')
@@ -14,7 +24,14 @@ const SelectedClass = () => {
             .then(data => setSelectedClass(data))
     }, []);
 
-  
+
+    console.log(selectedClass)
+       // filter current users selected class.
+       const cuurentUsersSelectedClasses = selectedClass.filter(item=>item.email==user?.email); 
+
+
+
+
   
   
     const handlePayment = (classId) => {
@@ -39,6 +56,7 @@ const SelectedClass = () => {
         });
     };
     
+    console.log(cuurentUsersSelectedClasses)
     return (
         <Container>
             <Table striped bordered hover>
@@ -51,7 +69,7 @@ const SelectedClass = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {selectedClass.map(e => (
+                    {cuurentUsersSelectedClasses.map(e => (
                         <tr key={e._id}>
                             <td><img className="table-image" src={e.image} alt="" /></td>
                             <td>{e.className}</td>

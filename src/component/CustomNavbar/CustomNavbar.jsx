@@ -1,9 +1,10 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
-import './CustomNavbar.css'
+import './CustomNavbar.css';
+
 
 
 // text-red,text-blue, bg-red,bg-blue,no-border-radius class are created to match color and theme of website. Those class are created in CustomNavbar.css file
@@ -15,7 +16,7 @@ const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
   const { user, handleLogout, allUser } = useContext(authContext);
 
-  console.log(user)
+  
 
   //I will check the email of current user with all the data that is being loaded. In this way i can find the current users photo from database.
   const currentUser = allUser.find(item=>item.email==user?.email)
@@ -26,6 +27,11 @@ const CustomNavbar = () => {
   //Getting the current pathname. It is needed to highlight the rout where user currently in.
   const { pathname } = useLocation();
 
+
+
+
+
+  
   return (
     <Navbar expand="lg" className='pt-5'>
       <Container>

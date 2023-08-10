@@ -56,7 +56,7 @@ const Dashboard = () => {
     }
 
     return (
-        <Container fluid className="h-100">
+        <Container fluid className="h-100 dashboard-container">
             <Row className="h-100">
                 <Col className="bg-dark h-md-100 " sm={12} md={2}>
                     <h1 className="text-white text-center mt-4 mb-5">

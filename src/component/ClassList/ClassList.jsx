@@ -44,6 +44,8 @@ const ClassList = () => {
         if(!user){
             navigate('/login')
         }
+
+        console.log(item)
     
         // Sending the class data to the server to store it as selected class for the user.
         fetch('https://zen-doj-server-shafin90.vercel.app/selected_class',{

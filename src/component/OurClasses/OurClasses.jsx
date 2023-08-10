@@ -10,7 +10,7 @@ const OurClasses = () => {
     }, []);
     return (
         <Container >
-            <h1 data-aos="zoom-in" data-aos-duration="2000" className="h1 fw-bold display-4 my-5 pt-5 text-center">Our <span className="text-blue">Class Catagory</span></h1>
+            <h1 data-aos="zoom-in" data-aos-duration="2000" className="h1 fw-bold display-4 my-5 pt-5 text-center">Populer <span className="text-blue">Class Catagory</span></h1>
 
 
 

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import './ManageClasses.css';
+import { Container, ToastContainer } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 function ManageClasses() {
 
 
 
 
+    // State declaration of this component.
     const [pendingClass, setPendingClass] = useState([]);
     const [approvedClass, setApprovedClass] = useState([]);
     const [showClass, setShowClass] = useState([]);
@@ -14,15 +17,16 @@ function ManageClasses() {
 
 
 
-    // this fetch has been done to collect data from pending class. it will get merged with approve class and be putted into showClass
+    // This fetch has been done to collect data from pending class. it will get merged with approve class and be putted into showClass
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/getting_pending_classes')
             .then(res => res.json())
             .then(data => setPendingClass(data))
     }, [])
 
+    
 
-    // this fetch has been done to collect data from approve class. it will get merged with pending class and be putted into showClass
+    // this fetch has been done to collect data from approved class. it will get merged with pending class and be putted into showClass
     useEffect(() => {
         fetch('https://zen-doj-server-shafin90.vercel.app/getting_approved_classes')
             .then(res => res.json())
@@ -31,11 +35,19 @@ function ManageClasses() {
 
 
 
-    // merging the pending class and approved class==========
-    useEffect(() => {
-        setShowClass([...pendingClass, ...approvedClass])
-    }, [])
 
+    // merging the pending class and approved class==========
+    const dataLoad=()=>{
+        setShowClass([...pendingClass, ...approvedClass])
+    }
+
+
+    // calling the dataLoad function inside of useEffect to merd pending class and approved class.
+    useEffect(()=>{
+        dataLoad();
+    },[])
+
+    
 
 
 
@@ -60,6 +72,22 @@ function ManageClasses() {
         })
             .then(res => res.json())
             .then(data => console.log(data))
+
+            // showing succesfull message
+            toast.success('Approved', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+
+
+            // This function load the data with  the  changed value that is happend now.
+            dataLoad();
 
 
     }
@@ -93,6 +121,23 @@ function ManageClasses() {
                 .then(res => res.json())
                 .then(data => console.log('pending theke hoise'))
 
+
+            // showing succesfull message
+            toast.success('Successfully Denied', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+
+
+            // This function load the data with  the  changed value that is happend now.
+            dataLoad();
+
         }
         else if (item.classStatus == 'approved') {
             // deleting the class from the approve class database========
@@ -102,12 +147,27 @@ function ManageClasses() {
                 .then(res => res.json())
                 .then(data => console.log('approve theke hoise'))
 
+            // showing succesfull message
+            toast.success('Successfully Denied', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+
+            // This function load the data with  the  changed value that is happend now.
+            dataLoad();
+
         }
 
 
 
 
-        
+
 
 
     }
@@ -118,45 +178,65 @@ function ManageClasses() {
 
 
     return (
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>ClassName</th>
-                    <th>Image</th>
-                    <th>Available Seats</th>
-                    <th>Price</th>
-                    <th>Class Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+        <Container className='d-flex flex-column justify-content-center align-items-center h-100'>
+
+            <h1 className='text-center fw-bold display-3 mb-5'>Approve or Deny class</h1>
+
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>ClassName</th>
+                        <th>Image</th>
+                        <th>Available Seats</th>
+                        <th>Price</th>
+                        <th>Class Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
 
-                {showClass.map(e => {
-                    return (
-                        <tr key={e._id}>
-                            <td>{e.className}</td>
-                            <td><img className='table-image' src={e.image} alt="" /></td>
-                            <td>{e.availableSeats}</td>
-                            <td>{e.price}</td>
-                            <td>{e.classStatus}</td>
-                            <td>
-                                <button onClick={() => handleApprove(e)} className='btn btn-success btn-sm me-2'>Approve</button>
-                                <button onClick={() => handleDeny(e)} className='btn btn-danger btn-sm'>Deny</button>
-                            </td>
-
-
-
-                        </tr>
-
-
-                    )
-                })}
+                    {showClass.map(e => {
+                        return (
+                            <tr key={e._id}>
+                                <td>{e.className}</td>
+                                <td><img className='table-image' src={e.image} alt="" /></td>
+                                <td>{e.availableSeats}</td>
+                                <td>{e.price}</td>
+                                <td>{e.classStatus}</td>
+                                <td>
+                                    <button onClick={() => handleApprove(e)} className='btn no-border-radius text-white bg-blue btn-sm me-2'>Approve</button>
+                                    <button onClick={() => handleDeny(e)} className='btn no-border-radius bg-red text-white btn-sm'>Deny</button>
+                                </td>
 
 
 
-            </tbody>
-        </Table>
+                            </tr>
+
+
+                        )
+                    })}
+
+
+
+                </tbody>
+            </Table>
+
+
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+        </Container>
     );
 }
 

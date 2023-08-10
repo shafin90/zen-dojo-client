@@ -1,12 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, ToastContainer } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { authContext } from '../AuthProvider/AuthProvider';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { toast } from 'react-toastify';
 
 const AddClass = () => {
     const { user, allUser } = useContext(authContext);
     
+
+    useEffect(()=>{
+        AOS.init();
+    },[])
+
+
     const currentUser = allUser.find(item=>item.email== user?.email);
 
 
@@ -49,13 +58,28 @@ const AddClass = () => {
         })
             .then(res => res.json())
             .then(data => console.log(data))
+        
+        
+        
+        
+        
+        e.target.reset();
 
-
-
-
-
-
-    }
+        toast.success('Successfully added the class', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+        
+        
+        
+        
+        }
 
 
 
@@ -65,8 +89,9 @@ const AddClass = () => {
 
     return (
 
-        <Container className='d-flex justify-content-center align-items-center h-100'>
-            <Form onSubmit={addClass} className='w-100'>
+        <Container className='d-flex flex-column justify-content-center align-items-center h-100'>
+            <h1  className='text-center fw-bold display-3 mb-3'>Add New Class</h1>
+            <Form data-aos="fade-left" data-aos-duration="2000" onSubmit={addClass} className='w-100'>
 
                 <Form.Group className="mb-3" >
                     <Form.Label className='fw-bold'>Instructor Name:</Form.Label>
@@ -126,6 +151,22 @@ const AddClass = () => {
                     Add Class
                 </Button>
             </Form>
+
+
+
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </Container>
     );
 }

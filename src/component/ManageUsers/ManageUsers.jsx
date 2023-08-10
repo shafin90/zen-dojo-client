@@ -133,7 +133,7 @@ const ManageUsers = () => {
 
 
     return (
-        <div className='d-flex flex-column justify-content-center align-items-center h-100'>
+        <div className='d-flex flex-column justify-content-center align-items-center table-container h-100'>
 
             <h1 className='text-center fw-bold display-3 mb-4'>All Users</h1>
 

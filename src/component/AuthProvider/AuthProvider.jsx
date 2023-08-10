@@ -107,6 +107,18 @@ const AuthProvider = ({ children }) => {
                 });
             })
             .catch((error) => {
+                // Showing succesfull message
+                toast.success('Something went wrong. Please try again', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+
 
             });
     }

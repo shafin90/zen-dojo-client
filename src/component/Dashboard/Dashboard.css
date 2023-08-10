@@ -1,3 +1,15 @@
 .dashboard-statistics{
     background: linear-gradient(90deg, rgb(214, 224, 240) 0%, rgb(240, 216, 216) 100%)
 }
+
+
+@media screen and (max-width:575px) {
+    .dashboard-container{
+        transform: rotate(90deg);
+        width: 100vh;
+        overflow-y: scroll;
+        
+        padding-bottom: 200px;
+    }
+    
+}
