@@ -25,6 +25,7 @@ import Instructor from './component/Instructor/Instructor';
 import ClassList from './component/ClassList/ClassList';
 import SelectedClass from './component/SelectedClass/SelectedClass';
 import NotFoundPage from './component/NotFoundPage/NotFoundPage';
+import EnrolledClasses from './component/EnrolledClasses/EnrolledClasses';
 // import AddBioOfInstructor from './component/AddBioOfInstructor/AddBioOfInstructor';
 
 
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/selected_class',
         element:<SelectedClass></SelectedClass>
+      },
+      {
+        path: '/dashboard/enrolledClasses',
+        element:<EnrolledClasses></EnrolledClasses>
       }
     ]
   },

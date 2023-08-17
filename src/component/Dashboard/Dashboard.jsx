@@ -71,7 +71,7 @@ const Dashboard = () => {
                         <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_users' : `${loggedInUser.status == 'instructor' ? '/dashboard/addClass' : '/dashboard/selected_class'}`}>{loggedInUser.status == 'admin' ? 'Manage users' : `${loggedInUser.status == 'instructor' ? 'Add Class' : 'Selected Class'}`}</Link></li>
 
 
-                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_classes' : '/dashboard/myClass'}>{loggedInUser.status == 'admin' ? 'Manage Classes' : `${loggedInUser.status == 'instructor' ? 'My Classes' : 'enrolled Class'}`}</Link></li>
+                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_classes' : `${loggedInUser.status=='instructor'?'/dashboard/myClass':'/dashboard/enrolledClasses'}`}>{loggedInUser.status == 'admin' ? 'Manage Classes' : `${loggedInUser.status == 'instructor' ? 'My Classes' : 'enrolled Class'}`}</Link></li>
 
 
                         <li className="mb-2"><Link className="text-white text-decoration-none" to="/">Home</Link></li>

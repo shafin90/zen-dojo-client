@@ -41,7 +41,7 @@ const ClassList = () => {
     // When user click on select button, then this function will be excecuted.
     const handleSelection=(item)=>{
         // If user wants to select a class without being logged in account, then user will be redirected to login page.
-        if(!user){
+        if(!user){  
             navigate('/login')
         }
 
@@ -53,7 +53,7 @@ const ClassList = () => {
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify(item)
+            body:JSON.stringify({...item, userEmail:user?.email})
         })
         .then(res=>res.json())
         .then(data=>console.log(data))

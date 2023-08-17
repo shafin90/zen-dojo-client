@@ -65,7 +65,7 @@ const AddClass = () => {
         
         e.target.reset();
 
-        toast.success('Successfully added the class', {
+        toast.success('Successfully added the class!', {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,

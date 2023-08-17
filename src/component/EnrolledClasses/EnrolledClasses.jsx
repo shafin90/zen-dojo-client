@@ -1,0 +1,65 @@
+import { useEffect } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { Container, Table } from "react-bootstrap";
+import { authContext } from "../AuthProvider/AuthProvider";
+
+
+// I am trying to fetch all the data of enrolledClasses first. Then i will filter that by user email to get logged in users enrolled classses.  After that i will show the information in a table.
+
+const EnrolledClasses = () => {
+    // getting data through contex api from authprovider component.
+    const { user } = useContext(authContext);
+
+
+    // Declaring state for this component.
+    const [allEnrolledClasses, setAllEnrolledClasses] = useState([]);
+    const [loggedInUserEnrolledClasses, setLoggedInUserEnrolledClasses] = useState([]);
+
+    // Fetching data
+    useEffect(() => {
+        fetch('https://zen-doj-server-shafin90.vercel.app/getEnrolledClasses')
+            .then(res => res.json())
+            .then(data => setAllEnrolledClasses(data))
+    }, [])
+
+
+    // Filtering only the loggedIn users enrolled class.
+    useEffect(() => {
+        let filteredData = allEnrolledClasses.filter(e => e.email == user?.email)
+        setLoggedInUserEnrolledClasses([...filteredData])
+    }, [])
+
+
+    console.log(allEnrolledClasses)
+
+    return (
+        <Container>
+            <h1 className="text-center display-4 fw-bold my-4">enrolled class</h1>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Cost</th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        loggedInUserEnrolledClasses.map(e => (
+                            <tr>
+                                
+                                <td>{e.className}</td>
+                                <td>{e.amount}</td>
+
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </Table>
+        </Container>
+    );
+};
+
+export default EnrolledClasses;

@@ -9,12 +9,17 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51NI6RJJlO98Mt1tpy1EJVt8YGEWmBjaYDBIbiKK
 
 const SelectedClass = () => {
     const {user} = useContext(authContext);
+    const [email, setEmail] = useState('');
 
 
     // State declaration of his component.
     const [selectedClass, setSelectedClass] = useState([]);
 
 
+
+    useEffect(()=>{
+        setEmail(user?.email)
+    },[])
 
 
 
@@ -27,21 +32,21 @@ const SelectedClass = () => {
 
     console.log(selectedClass)
        // filter current users selected class.
-       const cuurentUsersSelectedClasses = selectedClass.filter(item=>item.email==user?.email); 
-
+       const cuurentUsersSelectedClasses = selectedClass.filter(item=>item.userEmail==user?.email); 
+       
 
 
 
   
   
-    const handlePayment = (classId) => {
+    const handlePayment = (className ,classId, amount) => {
         // Make an API call to process the payment
         fetch('https://zen-doj-server-shafin90.vercel.app/process_payment', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'content-type': 'application/json'
             },
-            body: JSON.stringify({ classId })
+            body: JSON.stringify({className ,classId, amount, email })
         })
         .then(res => res.json())
         .then(data => {
@@ -56,9 +61,10 @@ const SelectedClass = () => {
         });
     };
     
-    console.log(cuurentUsersSelectedClasses)
+    // console.log(typeof  )
     return (
-        <Container>
+        <Container >
+            <h1 className='text-center fw-bold display-4 mb-4'>My Selected Classes</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -76,9 +82,9 @@ const SelectedClass = () => {
                             <td>loading</td>
                             <td>
                                 <StripeCheckout
-                                    token={() => handlePayment(e._id)}
+                                    token={() => handlePayment(e.className,e._id, parseInt(cuurentUsersSelectedClasses[0]?.price))}
                                     stripeKey={STRIPE_PUBLISHABLE_KEY}
-                                    amount='100'
+                                    amount={parseInt(cuurentUsersSelectedClasses[0]?.price)}
                                     name="Payment"
                                     currency="USD"
                                     description="Payment for selected class"
@@ -86,7 +92,7 @@ const SelectedClass = () => {
                                     locale="auto"
                                     allowRememberMe={false}
                                 >
-                                    <button className="btn btn-primary btn-sm">Payment</button>
+                                    <button className="btn no-border-radius bg-blue text-white btn-sm">Payment</button>
                                 </StripeCheckout>
                             </td>
                         </tr>
