@@ -72,10 +72,12 @@ const Banner = () => {
             <Row>
                 <Col data-aos="fade-right" data-aos-duration="2000" sm={12} md={5}>
                     <Flicking
-                        align="prev"
-                        circular={true}
-                        onMoveEnd={e => {
-                            console.log(e);
+                         align="prev"
+                         circular={true}
+                         moveType="freeScroll" // Use freeScroll for auto sliding
+                         interval={3000} // Set the interval time in milliseconds (e.g., 3 seconds)
+                         onMoveEnd={e => {
+                             console.log(e);
                         }}>
                         <div className="panel d-flex justify-content-center align-items-center  w-100">
 
