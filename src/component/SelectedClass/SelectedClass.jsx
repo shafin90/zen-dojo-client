@@ -8,18 +8,22 @@ const STRIPE_PUBLISHABLE_KEY = 'pk_test_51NI6RJJlO98Mt1tpy1EJVt8YGEWmBjaYDBIbiKK
 
 
 const SelectedClass = () => {
-    const {user} = useContext(authContext);
-    const [email, setEmail] = useState('');
+    // Recieving data from authprovider through context API.
+    const { user } = useContext(authContext);
 
 
     // State declaration of his component.
     const [selectedClass, setSelectedClass] = useState([]);
+    const [email, setEmail] = useState('');
 
 
 
-    useEffect(()=>{
+
+
+
+    useEffect(() => {
         setEmail(user?.email)
-    },[])
+    }, [])
 
 
 
@@ -31,36 +35,65 @@ const SelectedClass = () => {
 
 
     console.log(selectedClass)
-       // filter current users selected class.
-       const cuurentUsersSelectedClasses = selectedClass.filter(item=>item.userEmail==user?.email); 
-       
+    // filter current users selected class.
+    let cuurentUsersSelectedClasses = selectedClass.filter(item => item.userEmail == user?.email);
+
+    const filter = () => {
+        fetch('https://zen-doj-server-shafin90.vercel.app/getting_selected_class')
+            .then(res => res.json())
+            .then(data => setSelectedClass(data))
+
+
+        cuurentUsersSelectedClasses = selectedClass.filter(item => item.userEmail == user?.email);
+    }
 
 
 
-  
-  
-    const handlePayment = (className ,classId, amount) => {
+
+
+
+
+    const handlePayment = (className, classId, amount) => {
         // Make an API call to process the payment
         fetch('https://zen-doj-server-shafin90.vercel.app/process_payment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({className ,classId, amount, email })
+            body: JSON.stringify({ className, classId, amount, email })
         })
-        .then(res => res.json())
-        .then(data => {
-            // Handle the response from the server
-            console.log(data);
-            // Redirect or show a success message after payment
-        })
-        .catch(error => {
-            // Handle any errors that occurred during payment
-            console.error(error);
-            // Show an error message to the user
-        });
+            .then(res => res.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log(data);
+                // Redirect or show a success message after payment
+
+
+                // deleting data from sleected list
+                fetch(`https://zen-doj-server-shafin90.vercel.app/${classId}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            alert('deleted successfully')
+                            filter();
+                        }
+                        else {
+                            alert('not deleted yet')
+                        }
+                    })
+
+
+            })
+            .catch(error => {
+                // Handle any errors that occurred during payment
+                console.error(error);
+                // Show an error message to the user
+            });
     };
-    
+
+    console.log(cuurentUsersSelectedClasses)
     // console.log(typeof  )
     return (
         <Container >
@@ -82,7 +115,7 @@ const SelectedClass = () => {
                             <td>loading</td>
                             <td>
                                 <StripeCheckout
-                                    token={() => handlePayment(e.className,e._id, parseInt(cuurentUsersSelectedClasses[0]?.price))}
+                                    token={() => handlePayment(e.className, e._id, parseInt(cuurentUsersSelectedClasses[0]?.price))}
                                     stripeKey={STRIPE_PUBLISHABLE_KEY}
                                     amount={parseInt(cuurentUsersSelectedClasses[0]?.price)}
                                     name="Payment"

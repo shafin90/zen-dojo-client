@@ -10,6 +10,7 @@ import { authContext } from "../AuthProvider/AuthProvider";
 const EnrolledClasses = () => {
     // getting data through contex api from authprovider component.
     const { user } = useContext(authContext);
+    console.log(user)
 
 
     // Declaring state for this component.
@@ -26,16 +27,17 @@ const EnrolledClasses = () => {
 
     // Filtering only the loggedIn users enrolled class.
     useEffect(() => {
-        let filteredData = allEnrolledClasses.filter(e => e.email == user?.email)
-        setLoggedInUserEnrolledClasses([...filteredData])
+        // let filteredData = allEnrolledClasses.filter(e => e.email == user?.email)
+        setLoggedInUserEnrolledClasses([...allEnrolledClasses.filter(e => e.email == user?.email)])
     }, [])
 
 
     console.log(allEnrolledClasses)
+    console.log(loggedInUserEnrolledClasses)
 
     return (
         <Container>
-            <h1 className="text-center display-4 fw-bold my-4">enrolled class</h1>
+            <h1 className="text-center display-4 fw-bold my-4">Enrolled class</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>
