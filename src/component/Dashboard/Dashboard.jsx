@@ -24,7 +24,7 @@ const Dashboard = () => {
 
     // Collecting all user's data
     useEffect(() => {
-        fetch('http://localhost:5000/gettingUserInfo')
+        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [])

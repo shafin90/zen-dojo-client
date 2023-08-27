@@ -11,7 +11,7 @@ const Instructor = () => {
 
     // Loading all user's data. After that, data of instructor's will be filtered.
     useEffect(() => {
-        fetch('http://localhost:5000/gettingUserInfo')
+        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [])

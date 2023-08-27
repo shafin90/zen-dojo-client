@@ -20,7 +20,7 @@ const EnrolledClasses = () => {
     
     // Fetching data of enrolled class
     useEffect(() => {
-        fetch('http://localhost:5000/getEnrolledClasses')
+        fetch('https://zen-doj-server-shafin90.vercel.app/getEnrolledClasses')
             .then(res => res.json())
             .then(data => setLoggedInUserEnrolledClasses([...data.filter(e => e.email == user?.email)]))
         }, [])

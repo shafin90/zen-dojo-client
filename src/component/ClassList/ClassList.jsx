@@ -24,7 +24,7 @@ const ClassList = () => {
 
     // Loading al data of class.
     useEffect(() => {
-        fetch('http://localhost:5000/getting_approved_classes')
+        fetch('https://zen-doj-server-shafin90.vercel.app/getting_approved_classes')
             .then(res => res.json())
             .then(data => setClassList(data))
     }, [])
@@ -32,7 +32,7 @@ const ClassList = () => {
     
     // Collecting seleceted classes
     useEffect(() => {
-        fetch('http://localhost:5000/getting_selected_class')
+        fetch('https://zen-doj-server-shafin90.vercel.app/getting_selected_class')
             .then(res => res.json())
             .then(data => setSelectedClass(data))
     }, [])
@@ -66,7 +66,7 @@ const ClassList = () => {
         // add the class to the list of selected class
         else {
             // Sending the class data to the server to store it as selected class for the user.
-            fetch('http://localhost:5000/selected_class', {
+            fetch('https://zen-doj-server-shafin90.vercel.app/selected_class', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

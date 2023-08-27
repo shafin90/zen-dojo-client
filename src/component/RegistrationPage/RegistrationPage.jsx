@@ -38,7 +38,7 @@ const RegistrationPage = () => {
             // registration function from authprovider======
             handleRegistrationWithEmail(email,password);
            
-            fetch('http://localhost:5000/users',{
+            fetch('https://zen-doj-server-shafin90.vercel.app/users',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'

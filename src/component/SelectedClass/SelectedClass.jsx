@@ -28,7 +28,7 @@ const SelectedClass = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/getting_selected_class')
+        fetch('https://zen-doj-server-shafin90.vercel.app/getting_selected_class')
             .then(res => res.json())
             .then(data => setSelectedClass(data))
     }, []);
@@ -39,7 +39,7 @@ const SelectedClass = () => {
     let cuurentUsersSelectedClasses = selectedClass.filter(item => item.userEmail == user?.email);
 
     const filter = () => {
-        fetch('http://localhost:5000/getting_selected_class')
+        fetch('https://zen-doj-server-shafin90.vercel.app/getting_selected_class')
             .then(res => res.json())
             .then(data => setSelectedClass(data))
 
@@ -55,7 +55,7 @@ const SelectedClass = () => {
 
     const handlePayment = (className, classId, amount) => {
         // Make an API call to process the payment
-        fetch('http://localhost:5000/process_payment', {
+        fetch('https://zen-doj-server-shafin90.vercel.app/process_payment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -70,7 +70,7 @@ const SelectedClass = () => {
 
 
                 // deleting data from sleected list
-                fetch(`http://localhost:5000/delete_class/${classId}`, {
+                fetch(`https://zen-doj-server-shafin90.vercel.app/delete_class/${classId}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
