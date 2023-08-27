@@ -1,3 +1,7 @@
+// Instructor add their class through this component.
+// There is a form and add button.
+// All info will be stored in 'pendingclass' storage in database.
+
 import { useContext, useEffect, useState } from 'react';
 import { Container, ToastContainer } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -8,30 +12,32 @@ import 'aos/dist/aos.css';
 import { toast } from 'react-toastify';
 
 const AddClass = () => {
+    // getting value through Context API from AuthProvider component.
     const { user, allUser } = useContext(authContext);
-    
 
-    useEffect(()=>{
+
+    // Initialize AOS to animate page.
+    useEffect(() => {
         AOS.init();
-    },[])
+    }, [])
 
 
-    const currentUser = allUser.find(item=>item.email== user?.email);
+    // getting current user's name. Right now, user is an instructor. So cruurent user's information is instructor's information.
+    const currentUser = allUser.find(item => item.email == user?.email);
 
-
-
-
-
+    // Function---> to send data to database.
     const addClass = (e) => {
         e.preventDefault();
+
+        // collecting data from the form
         const className = e.target.className.value;
         const image = e.target.image.value;
         const availableSeats = e.target.availableSeats.value;
         const price = e.target.price.value;
-
-        const classStatus = 'pending';
+        const classStatus = 'pending';//Initially all class's status will be pending. Admin can approve it or deny it.
         const email = user.email;
 
+        // Pakaging all info to send to database.
         const myClass = {
             className,
             image,
@@ -41,14 +47,7 @@ const AddClass = () => {
             email
         }
 
-
-
-
-
-
-
-
-        // lets put the info through API
+        // sending the data to database through POST method
         fetch('http://localhost:5000/pending_classes', {
             method: 'POST',
             headers: {
@@ -58,13 +57,11 @@ const AddClass = () => {
         })
             .then(res => res.json())
             .then(data => console.log(data))
-        
-        
-        
-        
-        
+
+        // After sending data, reset the form
         e.target.reset();
 
+        // Showing successfull message as the class is added successfully.
         toast.success('Successfully added the class!', {
             position: "top-center",
             autoClose: 5000,
@@ -75,11 +72,7 @@ const AddClass = () => {
             progress: undefined,
             theme: "dark",
         });
-        
-        
-        
-        
-        }
+    }
 
 
 
@@ -90,7 +83,7 @@ const AddClass = () => {
     return (
 
         <Container className='d-flex flex-column justify-content-center align-items-center h-100'>
-            <h1  className='text-center fw-bold display-3 mb-3'>Add New Class</h1>
+            <h1 className='text-center fw-bold display-3 mb-3'>Add New Class</h1>
             <Form data-aos="fade-left" data-aos-duration="2000" onSubmit={addClass} className='w-100'>
 
                 <Form.Group className="mb-3" >
@@ -104,7 +97,7 @@ const AddClass = () => {
 
                 <Form.Group className="mb-3" >
                     <Form.Label className='fw-bold' >Instructor Email:</Form.Label>
-                    <Form.Text  className='ms-3 fw-bold fs-5'> {user.email}</Form.Text>
+                    <Form.Text className='ms-3 fw-bold fs-5'> {user.email}</Form.Text>
 
                 </Form.Group>
 

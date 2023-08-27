@@ -1,3 +1,10 @@
+// This is banner component. At the top of the home page under navbar.
+// There is a heading at the top the component. 
+// After heading, there is Left Part and Right Part in this component.
+// At the Left Part, there are some image can be scrolled left to right or right to left.
+// At the right part, there are some text. 
+
+
 import Flicking from '@egjs/react-flicking';
 import "@egjs/react-flicking/dist/flicking.css";
 import './Banner.css';
@@ -11,14 +18,14 @@ import { useEffect, useState } from 'react';
 // red= #B60000
 
 const Banner = () => {
+    // This state contain the width of screen.
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    console.log(screenWidth)
+
     // Initiate AOS
     useEffect(() => {
         AOS.init();
     }, []);
-
 
 
     return (
@@ -72,12 +79,12 @@ const Banner = () => {
             <Row>
                 <Col data-aos="fade-right" data-aos-duration="2000" sm={12} md={5}>
                     <Flicking
-                         align="prev"
-                         circular={true}
-                         moveType="freeScroll" // Use freeScroll for auto sliding
-                         interval={3000} // Set the interval time in milliseconds (e.g., 3 seconds)
-                         onMoveEnd={e => {
-                             console.log(e);
+                        align="prev"
+                        circular={true}
+                        moveType="freeScroll" // Use freeScroll for auto sliding
+                        interval={3000} // Set the interval time in milliseconds (e.g., 3 seconds)
+                        onMoveEnd={e => {
+                            console.log(e);
                         }}>
                         <div className="panel d-flex justify-content-center align-items-center  w-100">
 
@@ -111,7 +118,7 @@ const Banner = () => {
                 </Col>
             </Row>
 
-           
+
         </Container>
     );
 };

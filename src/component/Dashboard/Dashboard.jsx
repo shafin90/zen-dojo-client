@@ -1,3 +1,5 @@
+// All Dashboard of this website.
+
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import 'ka-table/style.css';
@@ -12,25 +14,23 @@ import './Dashboard.css';
 
 const Dashboard = () => {
 
-
-
+    // getting value form AuthProvider component through Context API.
     const { user } = useContext(authContext);
 
+
+    // Declaring State
     const [userInfo, setUserInfo] = useState([]);
 
- 
 
-
-
-    
-
-
+    // Collecting all user's data
     useEffect(() => {
         fetch('http://localhost:5000/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [])
 
+
+    // Spinner will be shown if the condition is true
     if (!user) {
         return (
             <div className="h-100 d-flex justify-content-center align-items-center">
@@ -41,12 +41,12 @@ const Dashboard = () => {
         )
     }
 
-    console.log(userInfo)
 
+    // getting LoggedInUser's information
     const loggedInUser = userInfo.find(e => e.email == user.email)
 
 
-
+    // Spinner will be shown if the condition is true
     if (!loggedInUser) {
         return (
             <div className="h-100 d-flex justify-content-center align-items-center">
@@ -56,6 +56,7 @@ const Dashboard = () => {
             </div>
         )
     }
+
 
     return (
         <Container fluid className="h-100 dashboard-container">
@@ -73,44 +74,24 @@ const Dashboard = () => {
                         <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_users' : `${loggedInUser.status == 'instructor' ? '/dashboard/addClass' : '/dashboard/selected_class'}`}>{loggedInUser.status == 'admin' ? 'Manage users' : `${loggedInUser.status == 'instructor' ? 'Add Class' : 'Selected Class'}`}</Link></li>
 
 
-                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_classes' : `${loggedInUser.status=='instructor'?'/dashboard/myClass':'/dashboard/enrolledClasses'}`}>{loggedInUser.status == 'admin' ? 'Manage Classes' : `${loggedInUser.status == 'instructor' ? 'My Classes' : 'enrolled Class'}`}</Link></li>
+                        <li className="mb-2"><Link className="text-white text-decoration-none" to={loggedInUser.status == 'admin' ? '/dashboard/manage_classes' : `${loggedInUser.status == 'instructor' ? '/dashboard/myClass' : '/dashboard/enrolledClasses'}`}>{loggedInUser.status == 'admin' ? 'Manage Classes' : `${loggedInUser.status == 'instructor' ? 'My Classes' : 'enrolled Class'}`}</Link></li>
 
 
                         <li className="mb-2"><Link className="text-white text-decoration-none" to="/">Home</Link></li>
 
 
-                        <li className="mb-2"><Link className={loggedInUser.status=="instructor"?"text-white text-decoration-none":"d-none"} to="/dashboard/addbioofinstructor ">Add Bio</Link></li>
-
-
-
-
-
-
-
-
-
+                        <li className="mb-2"><Link className={loggedInUser.status == "instructor" ? "text-white text-decoration-none" : "d-none"} to="/dashboard/addbioofinstructor ">Add Bio</Link></li>
 
 
                     </ul>
+
                 </Col>
 
 
 
                 <Col className="dashboard-statistics" sm={12} md={10}>
 
-
-
                     <Outlet></Outlet>
-
-
-
-
-
-
-
-
-
-
 
                 </Col>
             </Row>

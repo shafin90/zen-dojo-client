@@ -1,13 +1,15 @@
+// This component show the list of instructors. At the navbar, there is an option 'Instructors'. If user click on this option, user will see the list.
+
 import { useEffect, useState } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
 
 
 const Instructor = () => {
 
-
+    // Declaring state
     const [userInfo, setUserInfo] = useState([]);
 
-
+    // Loading all user's data. After that, data of instructor's will be filtered.
     useEffect(() => {
         fetch('http://localhost:5000/gettingUserInfo')
             .then(res => res.json())
@@ -15,9 +17,11 @@ const Instructor = () => {
     }, [])
 
 
+    // Data of all instructors.
     const instructor = userInfo.filter(e=>e.status == 'instructor');
 
 
+    // Spinner will be shown untill data of instructors is not loaded fully.
     if(instructor.length==0){
         return (
             <Spinner animation="border" role="status">

@@ -1,3 +1,6 @@
+// This component enlist all approved class.
+
+
 import { useContext, useEffect, useState } from "react";
 import { Container, Spinner, Table } from "react-bootstrap";
 import { authContext } from "../AuthProvider/AuthProvider";
@@ -19,11 +22,6 @@ const ClassList = () => {
     const navigate = useNavigate();
 
 
-
-
-
-
-
     // Loading al data of class.
     useEffect(() => {
         fetch('http://localhost:5000/getting_approved_classes')
@@ -31,28 +29,14 @@ const ClassList = () => {
             .then(data => setClassList(data))
     }, [])
 
+    
+    // Collecting seleceted classes
     useEffect(() => {
-        // Collecting seleceted classes 
         fetch('http://localhost:5000/getting_selected_class')
             .then(res => res.json())
             .then(data => setSelectedClass(data))
-
-
     }, [])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     // Spinner will be shown untill the data is loaded.
     if (classList.length == 0) {
@@ -62,8 +46,7 @@ const ClassList = () => {
             </Spinner>
         );
     }
-
-
+    
 
     // When user click on select button, then this function will be excecuted.
     const handleSelection = (item) => {
@@ -72,13 +55,15 @@ const ClassList = () => {
             navigate('/login')
         }
 
+        // If the class is  already selected, the show the message ,"Already added!!!"
         else if (selectedClass){
            const nn = selectedClass.map(item=>item.userEmail==user?.email);
            if(nn.length!==0){
-            alert('add korsen to ekbar,,,,r koto????')
+            alert('Already added!!!!')
            }
         }        
 
+        // add the class to the list of selected class
         else {
             // Sending the class data to the server to store it as selected class for the user.
             fetch('http://localhost:5000/selected_class', {
@@ -95,15 +80,6 @@ const ClassList = () => {
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 
     return (

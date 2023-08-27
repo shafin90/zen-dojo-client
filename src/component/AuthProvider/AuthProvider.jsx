@@ -4,26 +4,21 @@ import { app } from "../../../firebase.config";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export const authContext = createContext();
 
-
-
 const AuthProvider = ({ children }) => {
-    //auth for authentication==========
+    //auth for authentication.
     const auth = getAuth(app);
 
-    //provider for google sign in
+    //provider for google sign in.
     const provider = new GoogleAuthProvider();
-
-
 
 
     //State declaration=======================
     const [user, setUser] = useState(null);
-    const [allUser, setAllUser] = useState([])//This state is to store all user info
-    const [instructor, setInstructor] = useState([])// This state is to store instructors 
-    const [img, setImg] = useState('');//users img will be stored here.
+    const [allUser, setAllUser] = useState([])//This state is to store all user info that come from database.
+    const [instructor, setInstructor] = useState([])// This state is to store all instructors info.
+
 
     //Loading data from database. Filter the data to get only instructors data and set that to instructor state.
     useEffect(() => {
@@ -31,8 +26,6 @@ const AuthProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => setInstructor(data.filter(e => e.status == "instructor")))
     }, [])
-
-
 
 
     //Loading all users data.
@@ -43,52 +36,8 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // This function handle procedure of creating account using eamil and password
     const handleRegistrationWithEmail = (email, password) => {
-        console.log(email, password);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -107,7 +56,7 @@ const AuthProvider = ({ children }) => {
                 });
             })
             .catch((error) => {
-                // Showing succesfull message
+                // Showing error message
                 toast.success('Something went wrong. Please try again', {
                     position: "top-center",
                     autoClose: 5000,
@@ -118,16 +67,11 @@ const AuthProvider = ({ children }) => {
                     progress: undefined,
                     theme: "dark",
                 });
-
-
             });
     }
-
-
-
+    
     //This function handle the procedure of sign in with email password.
     const handleSignInWithEmail = (email, password) => {
-        console.log(email, password)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -145,6 +89,7 @@ const AuthProvider = ({ children }) => {
                 });
             })
             .catch((error) => {
+                // Show error message
                 toast.error('Oops!!! Something is wrong. Please try again', {
                     position: "top-right",
                     autoClose: 5000,
@@ -154,12 +99,11 @@ const AuthProvider = ({ children }) => {
                     draggable: true,
                     progress: undefined,
                     theme: "dark",
-                    });
+                });
 
             });
     }
-
-
+    
     //This function handle the procedure of getting sign in by google.
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
@@ -196,11 +140,7 @@ const AuthProvider = ({ children }) => {
             });
 
     }
-
-
-
-
-
+    
     //This function handle the procedure to logout user.
     const handleLogout = () => {
         signOut(auth).then(() => {
