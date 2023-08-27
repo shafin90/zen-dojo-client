@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
 
     //Loading data from database. Filter the data to get only instructors data and set that to instructor state.
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+        fetch('http://localhost:5000/gettingUserInfo')
             .then(response => response.json())
             .then(data => setInstructor(data.filter(e => e.status == "instructor")))
     }, [])
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
 
     //Loading all users data.
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+        fetch('http://localhost:5000/gettingUserInfo')
             .then(response => response.json())
             .then(data => setAllUser(data))
     }, [])
@@ -182,7 +182,7 @@ const AuthProvider = ({ children }) => {
 
 
                 // Sending users information to the database
-                fetch('https://zen-doj-server-shafin90.vercel.app/users', {
+                fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

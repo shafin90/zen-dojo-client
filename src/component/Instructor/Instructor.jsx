@@ -9,7 +9,7 @@ const Instructor = () => {
 
 
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+        fetch('http://localhost:5000/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserInfo(data))
     }, [])

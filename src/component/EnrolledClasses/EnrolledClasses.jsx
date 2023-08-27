@@ -19,17 +19,23 @@ const EnrolledClasses = () => {
 
     // Fetching data
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/getEnrolledClasses')
+        fetch('http://localhost:5000/getEnrolledClasses')
             .then(res => res.json())
-            .then(data => setAllEnrolledClasses(data))
-    }, [])
-
-
-    // Filtering only the loggedIn users enrolled class.
-    useEffect(() => {
+            .then(data => setLoggedInUserEnrolledClasses([...data.filter(e => e.email == user?.email)]))
+            // .then(data => setAllEnrolledClasses(data))
+  
         // let filteredData = allEnrolledClasses.filter(e => e.email == user?.email)
-        setLoggedInUserEnrolledClasses([...allEnrolledClasses.filter(e => e.email == user?.email)])
+        // setLoggedInUserEnrolledClasses([...allEnrolledClasses.filter(e => e.email == user?.email)])
+   
+        
+            // setLoggedInUserEnrolledClasses([...allEnrolledClasses.filter(e => e.email == user?.email)])
+    
+        
+   
+   
     }, [])
+
+    
 
 
     console.log(allEnrolledClasses)

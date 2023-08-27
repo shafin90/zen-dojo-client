@@ -16,6 +16,20 @@ const Dashboard = () => {
 
     const { user } = useContext(authContext);
 
+    const [userInfo, setUserInfo] = useState([]);
+
+ 
+
+
+
+    
+
+
+    useEffect(() => {
+        fetch('http://localhost:5000/gettingUserInfo')
+            .then(res => res.json())
+            .then(data => setUserInfo(data))
+    }, [])
 
     if (!user) {
         return (
@@ -26,18 +40,6 @@ const Dashboard = () => {
             </div>
         )
     }
-
-
-
-    const [userInfo, setUserInfo] = useState([]);
-
-
-    useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
-            .then(res => res.json())
-            .then(data => setUserInfo(data))
-    }, [])
-
 
     console.log(userInfo)
 

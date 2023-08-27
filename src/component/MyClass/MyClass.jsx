@@ -13,7 +13,7 @@ function MyClass() {
 
     // Loading pending class.
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/getting_pending_classes')
+        fetch('http://localhost:5000/getting_pending_classes')
             .then(res => res.json())
             .then(data => setPendingClass(data))
     }, [])
@@ -23,7 +23,7 @@ function MyClass() {
 
     // Loading approved class.
     useEffect(() => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/getting_approved_classes')
+        fetch('http://localhost:5000/getting_approved_classes')
             .then(res => res.json())
             .then(data => setApprovedClass(data))
     }, [])
@@ -32,10 +32,11 @@ function MyClass() {
 
     
 
-    // Mergin approved class and pending class.
-    useEffect(() => {
+
+
+    setTimeout(()=>{
         setShowClass([...pendingClass, ...approvedClass])
-    }, [])
+    },1000)
 
 
     console.log(showClass)

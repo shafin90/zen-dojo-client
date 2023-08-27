@@ -1,5 +1,5 @@
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown, Container, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
@@ -16,11 +16,12 @@ const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
   const { user, handleLogout, allUser } = useContext(authContext);
 
-  
+
+ 
 
   //I will check the email of current user with all the data that is being loaded. In this way i can find the current users photo from database.
-  const currentUser = allUser.find(item=>item.email==user?.email)
-  
+  const currentUser = allUser.find(item => item.email == user?.email)
+
 
 
 
@@ -31,7 +32,11 @@ const CustomNavbar = () => {
 
 
 
-  
+  const loggedINUserInformation = allUser.find(item=>item.email==user?.email);
+
+  console.log(loggedINUserInformation)
+
+
   return (
     <Navbar expand="lg" className='pt-5'>
       <Container>
@@ -41,7 +46,9 @@ const CustomNavbar = () => {
           <Nav className="me-auto d-flex justify-content-center align-items-center w-100">
             <Nav.Link className={pathname == '/' ? 'fw-bold  fs-5 text-red' : 'fw-bold '} as={Link} to='/' >Home</Nav.Link>
             <Nav.Link className={pathname == '/instructor' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/instructor'>Instructors</Nav.Link>
-            <Nav.Link className={pathname == '/class_list' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/class_list' >Classes</Nav.Link>
+
+            <Nav.Link className={pathname == '/class_list' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/class_list' >{loggedINUserInformation?.status=='admin'?'':'Class'}</Nav.Link>
+
             <Nav.Link className={user ? 'fw-bold' : 'd-none'} as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>
           <Nav>

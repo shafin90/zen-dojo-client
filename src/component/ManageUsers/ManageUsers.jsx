@@ -22,7 +22,7 @@ const ManageUsers = () => {
 
     // Fetching data for the table from database=====================================
     const loadData = () => {
-        fetch('https://zen-doj-server-shafin90.vercel.app/gettingUserInfo')
+        fetch('http://localhost:5000/gettingUserInfo')
             .then(res => res.json())
             .then(data => setUserFromDatabase(data))
 
@@ -38,7 +38,7 @@ const ManageUsers = () => {
         console.log(123);
 
 
-        fetch(`https://zen-doj-server-shafin90.vercel.app/updateUserInfo/${id}`, {
+        fetch(`http://localhost:5000/updateUserInfo/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const ManageUsers = () => {
 
 
 
-        fetch(`https://zen-doj-server-shafin90.vercel.app/updateUserInfo/${id}`, {
+        fetch(`http://localhost:5000/updateUserInfo/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
