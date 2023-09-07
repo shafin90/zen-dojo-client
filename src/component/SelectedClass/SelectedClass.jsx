@@ -76,11 +76,11 @@ const SelectedClass = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            alert('deleted successfully')
+                            alert('payment successfull')
                             filter();
                         }
                         else {
-                            alert('not deleted yet')
+                            alert('payment incomplete. Try again')
                         }
                     })
 
@@ -96,14 +96,14 @@ const SelectedClass = () => {
     console.log(cuurentUsersSelectedClasses)
     // console.log(typeof  )
     return (
-        <Container >
+        <Container className='d-flex flex-column justify-content-center align-items-center'>
             <h1 className='text-center fw-bold display-4 mb-4'>My Selected Classes</h1>
-            <Table striped bordered hover>
+            <Table className='w-75' striped bordered hover>
                 <thead>
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Student Number</th>
+                    
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -112,7 +112,7 @@ const SelectedClass = () => {
                         <tr key={e._id}>
                             <td><img className="table-image" src={e.image} alt="" /></td>
                             <td>{e.className}</td>
-                            <td>loading</td>
+            
                             <td>
                                 <StripeCheckout
                                     token={() => handlePayment(e.className, e._id, parseInt(cuurentUsersSelectedClasses[0]?.price))}

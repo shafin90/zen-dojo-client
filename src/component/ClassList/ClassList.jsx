@@ -50,18 +50,19 @@ const ClassList = () => {
 
     // When user click on select button, then this function will be excecuted.
     const handleSelection = (item) => {
+        // const nn = selectedClass.map(itemm=>itemm.className==item.className);
         // If user wants to select a class without being logged in account, then user will be redirected to login page.
         if (!user) {
             navigate('/login')
         }
 
         // If the class is  already selected, the show the message ,"Already added!!!"
-        else if (selectedClass){
-           const nn = selectedClass.map(item=>item.userEmail==user?.email);
-           if(nn.length!==0){
-            alert('Already added!!!!')
-           }
-        }        
+        // else if (nn){
+           
+           
+           
+        //     alert('Already added!!!!')
+        // }        
 
         // add the class to the list of selected class
         else {
@@ -74,7 +75,11 @@ const ClassList = () => {
                 body: JSON.stringify({ ...item, userEmail: user?.email })
             })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => alert("successfully added"))
+                .catch(error => {
+                    // Handle any errors that occurred during the fetch request
+                    alert('already added!!!')
+                });
 
 
         }
@@ -89,7 +94,7 @@ const ClassList = () => {
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Student Number</th>
+                       
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -100,7 +105,7 @@ const ClassList = () => {
                                 <tr key={e._id}>
                                     <td><img className="table-image" src={e.image} alt="" /></td>
                                     <td>{e.className}</td>
-                                    <td>loading</td>
+                                 
                                     <td><button onClick={() => handleSelection(e)} className={isDisable ? 'd-none' : "btn no-border-radius bg-blue px-3 btn-sm text-white"}>select</button></td>
                                 </tr>
                             )

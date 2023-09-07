@@ -80,7 +80,7 @@ const Dashboard = () => {
                         <li className="mb-2"><Link className="text-white text-decoration-none" to="/">Home</Link></li>
 
 
-                        <li className="mb-2"><Link className={loggedInUser.status == "instructor" ? "text-white text-decoration-none" : "d-none"} to="/dashboard/addbioofinstructor ">Add Bio</Link></li>
+                       
 
 
                     </ul>

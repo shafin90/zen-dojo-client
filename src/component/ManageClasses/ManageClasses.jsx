@@ -37,7 +37,7 @@ function ManageClasses() {
             .then(res => res.json())
             .then(data => setApprovedClass(data))
 
-}, [])
+}, [pendingClass, approvedClass])
 
 
 

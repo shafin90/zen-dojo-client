@@ -52,7 +52,7 @@ function MyClass() {
                         <th>Name</th>
                         <th>Image</th>
                         <th>Class Status</th>
-                        <th>Student number</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +63,7 @@ function MyClass() {
                                     <td>{e.className}</td>
                                     <td><img className='table-image' src={e.image} alt="" /></td>
                                     <td>{e.classStatus}</td>
-                                    <td>@mdo</td>
+                                 
                                 </tr>
                             )
                         })
