@@ -117,7 +117,7 @@ const SelectedClass = () => {
                                 <StripeCheckout
                                     token={() => handlePayment(e.className, e._id, parseInt(cuurentUsersSelectedClasses[0]?.price))}
                                     stripeKey={STRIPE_PUBLISHABLE_KEY}
-                                    amount={parseInt(cuurentUsersSelectedClasses[0]?.price)}
+                                    amount={parseInt(100*cuurentUsersSelectedClasses[0]?.price)}
                                     name="Payment"
                                     currency="USD"
                                     description="Payment for selected class"
