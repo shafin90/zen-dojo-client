@@ -31,28 +31,7 @@ const Banner = () => {
     return (
         <Container className='my-5 py-5'>
 
-            {screenWidth > 575 ? <h1 className='h4 mb-4 text-dark fw-bold banner-heading display-6 mb-5'>
-
-
-                <TypeAnimation
-                    sequence={[
-                        // Same substring at the start will only be typed once, initially
-                        'Zen Dojo',
-                        1000,
-                        'Unleash Your Inner Strength',
-                        1000,
-                        'Through Martial Arts and',
-                        1000,
-                        'Self-Defense Training',
-                        1000,
-                    ]}
-                    speed={50}
-                    style={{ fontSize: '2em' }}
-                    repeat={Infinity}
-                />
-            </h1> : <h1 className='h4 mb-4 text-dark fw-bold banner-heading display-6 mb-5'>
-
-
+            {screenWidth < 1200 ? <h1 className='h4 pb-5 text-sm-center   text-dark fw-bold banner-heading display-6 mb-5'>
                 <TypeAnimation
                     sequence={[
                         // Same substring at the start will only be typed once, initially
@@ -75,8 +54,30 @@ const Banner = () => {
                     style={{ fontSize: '2em' }}
                     repeat={Infinity}
                 />
-            </h1>}
-            <Row>
+            </h1> : <h1 className='h4 mb-4 text-dark fw-bold banner-heading display-6 mb-5'>
+
+
+                <TypeAnimation
+                    sequence={[
+                        // Same substring at the start will only be typed once, initially
+                        'Zen Dojo',
+                        1000,
+                        'Unleash Your Inner Strength',
+                        1000,
+                        'Through Martial Arts and',
+                        1000,
+                        'Self-Defense Training',
+                        1000,
+                    ]}
+                    speed={50}
+                    style={{ fontSize: '2em' }}
+                    repeat={Infinity}
+                />
+            </h1>
+
+
+            }
+            <Row className={screenWidth<1200 && "pt-5"}>
                 <Col data-aos="fade-right" data-aos-duration="2000" sm={12} md={5}>
                     <Flicking
                         align="prev"

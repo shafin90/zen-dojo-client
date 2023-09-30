@@ -1,9 +1,8 @@
 
-import { Col, Container, Nav, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import './HowToJoin.css'
 
 
@@ -17,7 +16,7 @@ const HowToJoin = () => {
 
             <Row>
                 <Col sm={12} md={6} data-aos="fade-right" className="order-2 order-md-1" data-aos-duration="2000" >
-                    <p className="question-para">
+                    <p className="question-para ">
                         Frist, you have to craete an account. 
                         Then you have to purchase any course under an instructor. Purchasing cousre is very simple. You just need to go to your dashboard after creating account. Then you will
                         find option to select course and payment procedure. <br />

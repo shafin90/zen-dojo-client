@@ -87,9 +87,9 @@ const OurClasses = () => {
                     <Card data-aos='fade-left' data-aos-duration='2000' className="mb-3" style={{ width: '18rem' }}>
                         <Card.Img variant="top" className="img-fluid h-100" src="https://www.womenshealthandfitness.com.au/wp-content/uploads/2021/03/self-defence-classes-for-women.jpeg" />
                         <Card.Body>
-                            <Card.Title className="fw-bold">Usual Self Defense</Card.Title>
+                            <Card.Title className="fw-bold">Krav Maga</Card.Title>
                             <Card.Text>
-                                Learning self-defense techniques is vital for personal safety, empowering individuals to respond effectively to potential threats and dangers.
+                                Learning Krav Maga techniques is vital for personal safety, empowering individuals to respond effectively to potential threats and dangers.
                             </Card.Text>
 
                         </Card.Body>
