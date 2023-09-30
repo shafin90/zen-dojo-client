@@ -12,6 +12,7 @@ import './CustomNavbar.css';
 const CustomNavbar = () => {
   //Getting datafrom Authprovider component through context API.
   const { user, handleLogout, allUser } = useContext(authContext);
+  const [path, setPath] = useState('');
 
 
   //I will check the email of current user with all the data that is being loaded. In this way i can find the current users photo from database.
@@ -21,7 +22,11 @@ const CustomNavbar = () => {
   //Getting the current pathname. It is needed to highlight the rout where user currently in.
   const { pathname } = useLocation();
   
-  
+  //setting the pathname
+  useEffect(()=>{
+    setPath(pathname)
+  },[pathname])
+
   // LggedInUser's information
   const loggedINUserInformation = allUser.find(item=>item.email==user?.email);
   
@@ -33,10 +38,10 @@ const CustomNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto d-flex justify-content-center align-items-center w-100">
-            <Nav.Link className={pathname == '/' ? 'fw-bold  fs-5 text-red' : 'fw-bold '} as={Link} to='/' >Home</Nav.Link>
-            <Nav.Link className={pathname == '/instructor' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/instructor'>Instructors</Nav.Link>
+            <Nav.Link className={path == '/' ? 'fw-bold  fs-5 text-red' : 'fw-bold '} as={Link} to='/' >Home</Nav.Link>
+            <Nav.Link className={path == '/instructor' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/instructor'>Instructors</Nav.Link>
 
-            <Nav.Link className={pathname == '/class_list' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/class_list' >{loggedINUserInformation?.status=='admin'?'':'Class'}</Nav.Link>
+            <Nav.Link className={path == '/class_list' ? 'fw-bold fs-5 text-red' : 'fw-bold'} as={Link} to='/class_list' >{loggedINUserInformation?.status=='admin'?'':'Class'}</Nav.Link>
 
             <Nav.Link className={user ? 'fw-bold' : 'd-none'} as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>
