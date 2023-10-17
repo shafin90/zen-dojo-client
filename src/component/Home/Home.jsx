@@ -8,6 +8,8 @@ import OurAllStudent from "../OurAllStudent/OurAllStudent";
 import FAQ from "../FAQ/FAQ";
 import OurGoal from "../OurGoal/OurGoal";
 import Footer from "../Footer/Footer";
+import ClassVideo from "../ClassVideo/ClassVideo";
+import Review from "../Review/Review";
 
 
 const Home = () => {
@@ -17,9 +19,11 @@ const Home = () => {
             <OurClasses></OurClasses>
             <Instructors></Instructors>
             <TimeShift></TimeShift>
+            <ClassVideo></ClassVideo>
             <OurGoal></OurGoal>
             <HowToJoin></HowToJoin>
             <OurAllStudent></OurAllStudent>
+        
             <FAQ></FAQ>
             
         </Container>

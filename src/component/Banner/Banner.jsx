@@ -5,7 +5,7 @@
 // At the right part, there are some text. 
 
 
-import Flicking from '@egjs/react-flicking';
+
 import "@egjs/react-flicking/dist/flicking.css";
 import './Banner.css';
 import { TypeAnimation } from 'react-type-animation';
@@ -13,6 +13,9 @@ import { Col, Container, Row } from 'react-bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect, useState } from 'react';
+import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+
 
 // blue- #014094
 // red= #B60000
@@ -77,32 +80,39 @@ const Banner = () => {
 
 
             }
-            <Row className={screenWidth<1200 && "pt-5"}>
+            <Row className={screenWidth < 1200 && "pt-5"}>
                 <Col data-aos="fade-right" data-aos-duration="2000" sm={12} md={5}>
-                    <Flicking
-                        align="prev"
-                        circular={true}
-                        moveType="freeScroll" // Use freeScroll for auto sliding
-                        interval={3000} // Set the interval time in milliseconds (e.g., 3 seconds)
-                        onMoveEnd={e => {
-                            console.log(e);
-                        }}>
-                        <div className="panel d-flex justify-content-center align-items-center  w-100">
 
-                            <img className='img-fluid' src="https://www.fullcontactway.com/wp-content/uploads/2017/08/boxing-match.jpg" alt="" />
+                    <CarouselProvider
+                        naturalSlideWidth={100}
+                        naturalSlideHeight={125}
+                        totalSlides={3}
+                    >
+                        <Slider>
+                            <Slide index={0}>
+                                <div className="panel d-flex justify-content-center align-items-center  w-100">
 
-                        </div>
+                                    <img className='img-fluid' src="https://www.fullcontactway.com/wp-content/uploads/2017/08/boxing-match.jpg" alt="" />
 
-                        <div className="panel d-flex justify-content-center align-items-center w-100">
-                            <img className='img-fluid h-100' src="https://stillmed.olympic.org/media/Images/OlympicOrg/News/2017/04/07/2017-04-07-karate-thumbnail.jpg" alt="" />
+                                </div>
+                            </Slide>
 
-                        </div>
+                            <Slide index={1}>
+                                <div className="panel d-flex justify-content-center align-items-center w-100">
+                                    <img className='img-fluid h-100' src="https://stillmed.olympic.org/media/Images/OlympicOrg/News/2017/04/07/2017-04-07-karate-thumbnail.jpg" alt="" />
 
-                        <div className="panel d-flex justify-content-center align-items-center w-100">
-                            <img className='img-fluid' src="https://cdn.vox-cdn.com/thumbor/i7RDAVFBUOQfWaU-pV2a5y8VcYA=/0x0:1000x667/2120x1413/filters:focal(0x0:1000x667)/cdn.vox-cdn.com/uploads/chorus_image/image/38160126/20120422_ajw_ax4_415.0.jpg" alt="" />
+                                </div>
+                            </Slide>
+                            <Slide index={2}>
+                                <div className="panel d-flex justify-content-center align-items-center w-100">
+                                    <img className='img-fluid' src="https://cdn.vox-cdn.com/thumbor/i7RDAVFBUOQfWaU-pV2a5y8VcYA=/0x0:1000x667/2120x1413/filters:focal(0x0:1000x667)/cdn.vox-cdn.com/uploads/chorus_image/image/38160126/20120422_ajw_ax4_415.0.jpg" alt="" />
 
-                        </div>
-                    </Flicking>
+                                </div>
+                            </Slide>
+                        </Slider>
+                        <ButtonBack>Back</ButtonBack>
+                        <ButtonNext>Next</ButtonNext>
+                    </CarouselProvider>
                 </Col>
 
 
