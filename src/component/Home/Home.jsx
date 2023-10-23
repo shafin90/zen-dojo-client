@@ -9,7 +9,8 @@ import FAQ from "../FAQ/FAQ";
 import OurGoal from "../OurGoal/OurGoal";
 import Footer from "../Footer/Footer";
 import ClassVideo from "../ClassVideo/ClassVideo";
-import Review from "../Review/Review";
+import OpinionComponent from "../OpinionComponent/OpinionComponent";
+import StudentReviews from "../StudentReviews/StudentReviews";
 
 
 const Home = () => {
@@ -22,10 +23,11 @@ const Home = () => {
             <ClassVideo></ClassVideo>
             <OurGoal></OurGoal>
             <HowToJoin></HowToJoin>
+            <StudentReviews></StudentReviews>
             <OurAllStudent></OurAllStudent>
-        
+            <OpinionComponent></OpinionComponent>
             <FAQ></FAQ>
-            
+
         </Container>
     );
 };
